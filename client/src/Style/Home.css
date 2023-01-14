@@ -1,0 +1,73 @@
+.Background{
+    position: relative;
+    background: url('/Users/figarox/Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub Projekty/BMIdiet/client/src/image/Globaltechnology.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.NavBar{
+    width: 70%; 
+    height: 70px;
+    position: relative;
+
+}
+
+.containerLoginIn{
+    position: absolute;
+    top: 0;
+    right: 70px;
+    width: 250px;
+    height: 70px;
+}
+
+.NavBarButton {
+    position: relative;
+    padding: 0.5em 1.2em;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    font-family: monospace;
+    font-size: 20px;
+    margin: 40px 0px 60px 60px;
+    width: 210px;
+    height: 50px;
+    text-align: center;
+  }
+  .NavBarButton {
+    color: #ffffff;
+  }
+  .NavBarButton::after, .NavBarButton::before {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 22%;
+    height: 20%;
+    border: 2px solid;
+    transition: all 0.6s ease;
+    border-radius: 2px;
+  }
+  .NavBarButton::after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: #08DEE3;
+    border-right-color: #08DEE3;
+  }
+  .NavBarButton::before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #08DEE3;
+    border-left-color: #08DEE3;
+  }
+  .NavBarButton:hover:after, .NavBarButton:hover:before {
+    width: 100%;
+    height: 100%;
+    background-color: #08dfe310;
+    cursor: pointer;
+  }

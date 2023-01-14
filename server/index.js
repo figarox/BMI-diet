@@ -9,7 +9,6 @@ const db = mysql.createPool({
     database: "BMIdiet",
 });
 
-
 app.get("/", (req , res) => {
 
         const sqlInsert = "INSERT INTO `BMIdiet`.`new_table` (`movieName`, `movieReview`) VALUES ('test', 'udalosie');"

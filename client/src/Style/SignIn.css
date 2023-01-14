@@ -1,0 +1,75 @@
+.BackgroundSignIn{
+    position: relative;
+    background: url('/Users/figarox/Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub Projekty/BMIdiet/client/src/image/ekran2.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100%;
+    height: 100vh;
+}
+
+.WindowSignIn{
+    width: 80%;
+    height: 500px;
+    position: relative;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.Login{
+    width: 500px;
+    height: 200px;
+    top: 30%;
+    left: 10%;
+    transform: translate(-50%,-50%);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    position: relative;
+    transform: skew(20deg);
+    background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
+    border-radius: 16px;
+}
+.TextInformation h3{ 
+    text-align: center;
+    font-size: 90px;
+    color: white;
+    font-family: 'Genos';
+    font-weight: bold;
+}
+
+.TextInformation p{ 
+    position: relative;
+    text-align: center;
+    font-size: 25px;
+    color: rgb(150, 150, 150);
+    font-family: 'Genos';
+    font-weight: 550;
+    top: -20px;
+}
+
+.Registration a {
+    text-decoration: none;
+}
+
+.Registration a{
+    display: inline-block;
+    position: relative;
+    color: #00B0AF;
+  }
+  
+.Registration a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #00B0AF;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+.Registration a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
