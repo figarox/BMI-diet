@@ -8,26 +8,140 @@
 }
 
 .WindowSignIn{
+    position: relative;
+    z-index: 1;
     width: 80%;
     height: 500px;
-    position: relative;
     top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 
+.CubeLC{
+    width: 80vw;
+    height: 500px;
+}
+
+.col .LC {
+  position: relative;
+  height: 350px;
+}
+.col .LC2 {
+  position: relative;
+  height: 350px;
+}
+.col .ButtonLP{
+  position: relative;
+  width: 300px;
+  height: 110px;
+  transform: skew(20deg);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
+  color: #9b9b9b89;
+
+}
+
 .Login{
+    position: relative;
+    left: 80px;
+    z-index: 2;
     width: 500px;
     height: 200px;
-    top: 30%;
-    left: 10%;
-    transform: translate(-50%,-50%);
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    position: relative;
     transform: skew(20deg);
     background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
     border-radius: 16px;
 }
+
+    .Password{
+        position: relative;
+        top: 90px;
+        left: 70px;
+        z-index: 2;
+        width: 500px;
+        height: 200px;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+        transform: skew(20deg);
+        background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
+        border-radius: 16px;
+    }
+
+.CubeOne{
+    position: relative;
+    z-index: -2;
+    width: 80px;
+    height: 150px;
+    background-color: #08DEE3;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    transform: skew(20deg);
+    border-radius: 16px;
+    right: -495px;
+    top: -205px;
+}
+
+.CubeOneP {
+    position: relative;
+    z-index: -1;
+    width: 80px;
+    height: 150px;
+    background-color: #08DEE3;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    transform: skew(20deg);
+    border-radius: 16px;
+    right: -52px;
+    top: -115px;
+}
+
+.LineUp{
+    position: absolute;
+    z-index: 4;
+    width: 2px;
+    height: 120px;
+    background-color: #08DEE3;
+    transform: skew(0deg);
+    border-radius: 16px;
+    top: 30px;
+    left: 50px;
+}
+
+.LineUpP{
+    position: absolute;
+    z-index: 4;
+    width: 2px;
+    height: 120px;
+    background-color: #08DEE3;
+    transform: skew(0deg);
+    border-radius: 16px;
+    top: 30px;
+    left: 50px;
+}
+
+
+.Line{
+    position: absolute;
+    z-index: 4;
+    width: 300px;
+    height: 2px;
+    background-color: #08DEE3;
+    transform: skew(20deg);
+    border-radius: 16px;
+    top: 148px;
+    left: 50px;
+}
+
+.LineP{
+    position: absolute;
+    z-index: 4;
+    width: 300px;
+    height: 2px;
+    background-color: #08DEE3;
+    transform: skew(0deg);
+    border-radius: 16px;
+    top: 148px;
+    left: 50px;
+}
+
+/* .TextInformation - css for information under h3 */
 .TextInformation h3{ 
     text-align: center;
     font-size: 90px;
@@ -46,30 +160,93 @@
     top: -20px;
 }
 
-.Registration a {
-    text-decoration: none;
+/* .Registration - "Zarejestruj sie" - animation bottom border */
+
+    .Registration a{
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        color: #08DEE3;
+      }
+      
+    .Registration a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #08DEE3;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+      
+    .Registration a:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+    }
+/* _________________________________________ */
+
+.form {
+  position: relative;
+  top: 65px;
+  left: 70px;
+  width: 250px;
+  position: relative;
+  height: 60px;
+  overflow: hidden;
 }
 
-.Registration a{
-    display: inline-block;
-    position: relative;
-    color: #00B0AF;
-  }
-  
-.Registration a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #00B0AF;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-  
-.Registration a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
+.form input {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding-top: 20px;
+  border: none;
+  background-color: transparent;
+}
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid white;
+}
+.form label::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid #08DEE3;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  padding-bottom: 5px;
+  transition: all 0.3s ease;
+  color: #ffffff;
+
+}
+.form input:focus {
+  outline: none;
+}
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-150%);
+  font-size: 14px;
+  left: 0px;
+  color: #08DEE3;
+}
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+  transform: translateX(0%);
+}
