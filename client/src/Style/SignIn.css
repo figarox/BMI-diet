@@ -2,7 +2,7 @@
     position: relative;
     background: url('/Users/figarox/Library/Mobile Documents/com~apple~CloudDocs/Documents/GitHub Projekty/BMIdiet/client/src/image/ekran2.png');
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: cover;
     width: 100%;
     height: 100vh;
 }

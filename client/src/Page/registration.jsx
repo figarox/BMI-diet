@@ -10,7 +10,6 @@ const WebRegister = () => {
     const [passwordReg , setPasswordReg] = useState("");
 
 
-
     const Register = () => {
         Axios.post("http://localhost:3001/register", {
             login: loginReg,

@@ -1,0 +1,203 @@
+.BodyDashBoard{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+.NavDashBoard{
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
+    border-bottom-left-radius: 20px ;
+    border-bottom-right-radius: 20px ;
+
+}
+
+.SearchBox{
+    position: relative;
+    width: 70%;
+    height: 100%;
+    float: left;
+}
+
+.Search{
+    position: relative;
+    width: 70%;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.Search input{
+    position: relative;
+    border: none;
+    width: 100%;
+    height: 50px;
+    border-radius: 50px;
+    margin-left: 20px;
+    text-indent: 20px
+}
+
+        .UserBox{
+            position: relative;
+            float: left;
+            width: 250px;
+            height: 80px;
+            background-color: #08DEE3;
+            margin: 12px 0px 20px 20px;
+            border-radius: 55px;
+        }
+
+        .UserBoxInSide{
+            position: absolute;
+            width: 248px;
+            height: 95%;
+            background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
+            margin: 2px 0px 0px 1px;
+            border-radius: 55px;
+        }
+
+
+.WindowDashBoard{
+    position: relative;
+    width: 100%;
+    height: 90%;
+    background-color: #F4F7FA;
+}
+
+.OverView{
+    position: relative;
+    width: 100%;
+    padding-top: 50px;
+  }
+
+  .BoxOverView{
+    position: relative;
+    width: 350px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  }
+
+
+.Diagram{
+  width: 90%;
+  min-width: 500px;
+  height: 550px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  border-radius: 15px;
+}
+
+.Mpopular{
+  width: 400px;
+  height: 550px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  border-radius: 15px;
+}
+.row{
+  min-width: 350px
+}
+
+.col{
+  min-width: 350px;
+  height: 200px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+
+}
+
+#menu__toggle {
+    opacity: 0;
+  }
+  #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+    background-color: rgb(0, 0, 0);
+
+  }
+  #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+    background-color: rgb(0, 0, 0);
+
+  }
+  #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+    background-color: rgb(0, 0, 0);
+  }
+  #menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+  }
+
+  .hamburger-menu{
+    position: absolute;
+    width: 100px;
+    height: 100%;
+  }
+  .menu__btn {
+    position: relative;
+    top: 50%;
+    left: 20%;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 5;
+  }
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #f8f8f8;
+    transition-duration: .25s;
+  }
+
+  .menu__btn > span::before {
+    content: '';
+    top: -8px;
+  }
+  .menu__btn > span::after {
+    content: '';
+    top: 8px;
+  }
+  .menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 120px 0;
+    list-style: none;
+    transition-duration: .25s;
+    z-index: 4;
+    background: rgba(255, 255, 255, 0.24);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+  }
+  .menu__item {
+    display: block;
+    padding: 22px 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+    text-align: center;
+  }
+  .menu__item:hover {
+    background-color: #08dfe374;
+  }
+

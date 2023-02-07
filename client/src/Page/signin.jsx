@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Axios from "axios";
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../Style/SignIn.css';
 
-const MainSite = () => {
+const SignIn = () => {
 
     const [login , setLogin] = useState("");
     const [password , setPassword] = useState("");
 
-    const [loginStatus , setLoginStatus] = useState("")
+    const [loginStatus , setLoginStatus] = useState("");
+
+    Axios.defaults.withCredentials = true;
 
 
     const Login = () => {
@@ -21,12 +23,21 @@ const MainSite = () => {
            if(response.data.message){
             setLoginStatus(response.data.message);
            }else{
-            setLoginStatus(response.data[0].login)
+            navigate('/dashboard')
            }
 
     });
 };
 
+    useEffect(() => {
+        Axios.get("http://localhost:3001/login").then((response) => {
+            if(response.data.loggedIn == true){
+                setLoginStatus(response.data.user[0].login)
+            }
+        })
+    })
+
+    const navigate = useNavigate();
 
     return (
             <div className="Body">
@@ -40,7 +51,7 @@ const MainSite = () => {
                             <div className="WindowSignIn">
                                 <div className="TextInformation">
                                     <h3>LOGOWANIE</h3>
-                                    <p className="Registration">Nie masz jeszcze konta ? <Link to="/Registration">Zarejestruj Się</Link></p>
+                                    <p className="Registration">Nie masz jeszcze konta ? <Link to="/registration">Zarejestruj Się</Link></p>
                                 </div>
                                 
 
@@ -115,5 +126,5 @@ const MainSite = () => {
       );
 }
  
-export default MainSite;
+export default SignIn;
 

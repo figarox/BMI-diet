@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import '../Style/Home.css';
 
-const MainSite = () => {
+const Home = () => {
 
     return (
             <div className="Body">
@@ -24,7 +24,7 @@ const MainSite = () => {
                                     </div>
                             </div>
                             <div className="containerLoginIn">
-                                 <Link to="/SignIn">
+                                 <Link to="/signin">
                                     <div className="NavBarButton">Zaloguj się</div>
                                 </Link>
                             </div>
@@ -38,5 +38,5 @@ const MainSite = () => {
       );
 }
  
-export default MainSite;
+export default Home;
 

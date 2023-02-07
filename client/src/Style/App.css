@@ -6,11 +6,6 @@
     height: 100%;
 }
 
-.row > .col{
-    padding-left: 0px;
-    padding-right: 0px;
-    min-width: 250px;
-  }
 
 section{
     width: 100%;
