@@ -1,29 +1,25 @@
 import React from "react";
-import { useState } from "react";
-import { BrowserRouter as Router , Routes , Route} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "../Page/home";
 import SignIn from "../Page/signin";
 import Registration from "../Page/registration";
-import DashBoard from "../IsLoginPage/DashBoard";
-import PrivateRoutes from "./PrivateRoutes";
+import PrivateSwichPage from "./PrivateSwichPage";
+import LogSwitchPage from "./PrivateSwichPage";
+import DashBoard from "../IsLoginPage/DashBoard"
 
 const SwitchPage = () => {
-
-
     return ( 
         <>
-            <Router>
-                <Routes>
-                    <Route path="/" element={<Home/>} />
-                    <Route path="/signin" element={<SignIn/>} />
-                    <Route element={<PrivateRoutes/>}>
-                        <Route path="/dashboard" element={<DashBoard/>} />
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/registration" element={<Registration/>}/>
+                <Route path="/signin" element={<SignIn/>}/>
+                    <Route element={<PrivateSwichPage/>}>
+                        <Route path="/dashboard" element={<DashBoard/>}/>
                     </Route>
-                </Routes>
-            </Router>
-        </>
+            </Routes>
+      </>
      );
 }
-
  
 export default SwitchPage;

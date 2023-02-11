@@ -64,8 +64,8 @@ const db = mysql.createConnection({
             })
 
             app.get("/login", (req, res) => {
-                if (req.session.login) {
-                    res.send({ loggedIn: true, login: req.session.login});
+                if (req.session.user) {
+                    res.send({ loggedIn: true, login: req.session.user});
                 }else{
                     res.send({ loggedIn: false })
                 }
@@ -85,7 +85,7 @@ const db = mysql.createConnection({
                     if(result.length > 0){
                         bcrypt.compare(password, result[0].password, (error, response) =>{
                             if(response){
-                                req.session.login = result;
+                                req.session.user = result;
                                 res.send(result);
                             }else{
                                 res.send({ message: "Wrong login/password combination !!!"})   
