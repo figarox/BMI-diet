@@ -15,23 +15,23 @@
 
 .SearchBox{
     position: relative;
-    width: 70%;
+    width: 100%;
     height: 100%;
     float: left;
 }
 
 .Search{
     position: relative;
-    width: 70%;
+    width: 60%;
     height: 50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+    top: 25%;
+    left: 5%;
+    float: left;
+
 }
 
 .Search input{
     position: relative;
-    border: none;
     width: 100%;
     height: 50px;
     border-radius: 50px;
@@ -42,16 +42,17 @@
         .UserBox{
             position: relative;
             float: left;
-            width: 250px;
+            width: 80px;
             height: 80px;
-            background-color: #08DEE3;
-            margin: 12px 0px 20px 20px;
+            background: linear-gradient(27deg, rgb(0, 126, 244) 0%, rgb(58, 78, 133) 100%);
+            margin: 12px 0px 20px 200px;
             border-radius: 55px;
+            
         }
 
         .UserBoxInSide{
-            position: absolute;
-            width: 248px;
+            position: relative;
+            width: 78px;
             height: 95%;
             background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
             margin: 2px 0px 0px 1px;
@@ -64,6 +65,7 @@
     width: 100%;
     height: 90%;
     background-color: #F4F7FA;
+    z-index: 1;
 }
 
 .OverView{
@@ -77,10 +79,63 @@
     width: 350px;
     height: 200px;
     margin: 0 auto;
-    background-color: #ffffff;
+    background: linear-gradient(29deg, rgba(21,28,47,1) 0%, rgba(21,28,47,1) 26%, rgba(34,41,61,1) 100%);  
     border-radius: 30px;
     box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+    z-index: 3
   }
+
+  .BoxHide{
+    position: relative;
+    width: 50px;
+    height: 100px;
+    background-color: rgb(58, 78, 133);
+    z-index: 2;
+  }
+
+  .TextBoxFirst{
+    position: relative;
+    width: 100%;
+    height: 80px;
+  }
+
+  .TextBoxFirst p{
+    color: #f4f4f4;
+    font-size: 35px;
+    padding-left: 35px;
+    font-weight: 600;
+    font-family: 'Genos';
+    text-transform: uppercase;
+  }
+
+  .TextBoxFirstNumber{
+    position: relative;
+    width: 80%;
+    height: 120px;
+    float: left;
+  }
+
+  .TextBoxFirstNumber i{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    font-weight: 800;
+    background: -webkit-linear-gradient(27deg, rgb(0, 126, 244) 0%, rgb(58, 78, 133) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    }
+
+
+
+.ArrowBoxFirstNumber{
+  position: relative;
+  background-color: #d41919;
+  width: 20%;
+  height: 120px;
+  float: left;
+}
 
 
 .Diagram{

@@ -54,16 +54,16 @@
     right: 0;
     border-top-color: transparent;
     border-left-color: transparent;
-    border-bottom-color: #08DEE3;
-    border-right-color: #08DEE3;
+    border-bottom-color: #1DA1FB;
+    border-right-color: #1DA1FB;
   }
   .NavBarButton::before {
     top: 0;
     left: 0;
     border-bottom-color: transparent;
     border-right-color: transparent;
-    border-top-color: #08DEE3;
-    border-left-color: #08DEE3;
+    border-top-color: #1DA1FB;
+    border-left-color: #1DA1FB;
   }
   .NavBarButton:hover:after, .NavBarButton:hover:before {
     width: 100%;

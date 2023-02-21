@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import Axios from "axios";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import '../Style/SignIn.css';
+import '../Style/login.css';
 
-const SignIn = () => {
+const Login = () => {
 
     const [login , setLogin] = useState("");
     const [password , setPassword] = useState("");
@@ -23,7 +23,7 @@ const SignIn = () => {
            if(response.data.message){
             setLoginStatus(response.data.message);
            }else{
-            navigate('/dashboard')
+            navigate('/user')
            }
 
     });
@@ -119,5 +119,5 @@ const SignIn = () => {
       );
 }
  
-export default SignIn;
+export default Login;
 

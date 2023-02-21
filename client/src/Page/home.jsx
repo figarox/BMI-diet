@@ -24,7 +24,7 @@ const Home = () => {
                                     </div>
                             </div>
                             <div className="containerLoginIn">
-                                 <Link to="/signin">
+                                 <Link to="/login">
                                     <div className="NavBarButton">Zaloguj się</div>
                                 </Link>
                             </div>

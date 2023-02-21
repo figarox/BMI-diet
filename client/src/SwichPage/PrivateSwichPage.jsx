@@ -4,14 +4,13 @@ import { useState } from "react";
 
  const PrivateSwichPage = () => {
     
-    const [cos , setCos] = useState()
+    const [cos , setCos] = useState(true)
 
-    Axios.get("http://localhost:3001/login").then((response) => {
-        setCos(response.data.loggedIn)
+    Axios.get("http://localhost:3001/login").then((resposne) => {
+       // setCos(resposne.data.loggedIn)
         }
     )
     if(cos != undefined){
-        console.log(cos)
         return cos ? <Outlet/> : <Navigate to="/signin"/>
     }
     

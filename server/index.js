@@ -5,12 +5,15 @@ const cors = require("cors");
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
-
-
 const bcrypt = require('bcrypt');
 const saltRounds = 10
 
 const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+  }
+
 
 app.use(express.json());
 app.use(cors({
@@ -24,16 +27,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(
     session({
-        key: "userId",
-        secret: "learning",
+        secret: process.env.SESSION_SECRET,
         resave: false,
-        saveUninitialized: false,
+        saveUninitialized: true,
         cookie: {
-            expires: 60 * 60 * 24,
-        },
+            httpOnly: true,
+        }
     })
 )
 
+app.use((req, res, next) => {
+    console.log(req.session);
+    next();
+})
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -47,6 +53,13 @@ const db = mysql.createConnection({
             const login = req.body.login;
             const password = req.body.password;
 
+            const sex = req.body.sex;
+            const weight = req.body.weight;
+            const height = req.body.height;
+
+            const h2 = height/100;
+            const bmicalculate = weight/(h2*h2)
+
 
             bcrypt.hash(password,saltRounds, (err,hash) => {
                 if(err) {
@@ -55,6 +68,13 @@ const db = mysql.createConnection({
                 db.query(
                     "INSERT INTO `BMIdiet`.`konto` (`login`, `password`) VALUES (?,?);",
                     [login,hash],
+                    (err,result)=>{
+                        console.log(err)
+                    }
+                )
+                db.query(
+                    "INSERT INTO `BMIdiet`.`accout_statistics` (`accout_statisticscol_ achievements`, `accout_statisticscol_weight`, `accout_statisticscol_bmi`, `accout_statisticscol_goal`) VALUES ('0', ?, ?, '0');",
+                    [weight,bmicalculate],
                     (err,result)=>{
                         console.log(err)
                     }
@@ -85,6 +105,7 @@ const db = mysql.createConnection({
                     if(result.length > 0){
                         bcrypt.compare(password, result[0].password, (error, response) =>{
                             if(response){
+
                                 req.session.user = result;
                                 res.send(result);
                             }else{
@@ -100,6 +121,19 @@ const db = mysql.createConnection({
                 )
 
             })
+
+app.get('/data', (req,res) => {
+   db.query("SELECT * FROM BMIdiet.accout_statistics WHERE id = 12;",(err , result) => {
+        if( err ){
+            console.log(err)
+        }else{
+            res.send(result)
+        }
+   })
+    }
+)
+
+
 
 
 app.listen(3001, () => {
