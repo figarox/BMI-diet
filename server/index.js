@@ -66,15 +66,21 @@ const db = mysql.createConnection({
                     console.log(err)
                 }
                 db.query(
-                    "INSERT INTO `BMIdiet`.`konto` (`login`, `password`) VALUES (?,?);",
+                    "INSERT INTO konto (`login`, `password`) VALUES (?,?);",
                     [login,hash],
                     (err,result)=>{
-                        console.log(err)
+                        console.log(login)
                     }
-                )
+                );
                 db.query(
-                    "INSERT INTO `BMIdiet`.`accout_statistics` (`accout_statisticscol_ achievements`, `accout_statisticscol_weight`, `accout_statisticscol_bmi`, `accout_statisticscol_goal`) VALUES ('0', ?, ?, '0');",
-                    [weight,bmicalculate],
+                    "CREATE TABLE `?` (`id` INT NOT NULL AUTO_INCREMENT,`achievements` VARCHAR(45) NOT NULL,`weight` VARCHAR(45) NOT NULL,`bmi` VARCHAR(45) NOT NULL,`goal` VARCHAR(45) NOT NULL,PRIMARY KEY (`id`));",
+                    [login],
+                    console.log(login)
+
+                );
+                db.query(
+                    "INSERT INTO `?` (`achievements`, `weight`, `bmi`, `goal`) VALUES ('0', ?, ?, '0');",
+                    [login,weight,bmicalculate],
                     (err,result)=>{
                         console.log(err)
                     }
@@ -85,9 +91,9 @@ const db = mysql.createConnection({
 
             app.get("/login", (req, res) => {
                 if (req.session.user) {
-                    res.send({ loggedIn: true, login: req.session.user});
+                    res.send({ login: req.session.user});
                 }else{
-                    res.send({ loggedIn: false })
+                    //res.send({ loggedIn: false })
                 }
             })
 
@@ -96,7 +102,7 @@ const db = mysql.createConnection({
                 const password = req.body.password;
             
                 db.query(
-                    "SELECT * FROM BMIdiet.konto WHERE login = ?",
+                    "SELECT * FROM BMIdiet.?",
                     login,
                 (err, result) => {
                     if (err){
