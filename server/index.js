@@ -147,12 +147,30 @@ app.post('/id', (req,res) => {
     }
 )
 
-app.post('/data', (req,res) => {
+app.post('/Alldata', (req,res) => {
 
     const login = req.body.login
 
     dbmysql.query(
         "SELECT * FROM BMIdiet."+login+"",
+        (err, result) => {
+            if(err){
+                res.send({ message: "blad w pobieraniu danych z db"})   
+            }else{
+                res.send(result)
+                console.log("wykonano rezulat pobierania uzytkownika")
+
+            }
+        }
+        )
+})
+
+app.post('/data', (req,res) => {
+
+    const login = req.body.login
+
+    dbmysql.query(
+        "SELECT * FROM BMIdiet."+login+" ORDER BY id DESC LIMIT 1",
         (err, result) => {
             if(err){
                 res.send({ message: "blad w pobieraniu danych z db"})   

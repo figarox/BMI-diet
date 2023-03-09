@@ -10,19 +10,21 @@ import Chart from "react-apexcharts";
 const User = () => {
     const [id,setId] = useState(sessionStorage.getItem('id'))
     const [login,SetLogin] = useState()
-    const [eer,setEer] = useState(null)
+    const [eer,setEer] = useState()
 
     const [UserBox,setUserBox] = useState(0);
-    const [EmployeeList,setEmployeeList] = useState([])
+    const [Data,setData] = useState([]);
+    const [FilterData,setFilterData] = useState([]);
+
 
     const [options, setOptions] = useState({
         
         xaxis: {
-            categories: [1991,2001,2003,2004,2005],
+            categories: ['pon','wt','śr','czw','pi'],
         },
         
         chart: {
-            type: 'bar',
+            type: 'line',
           },
         dataLabels: {
             enabled: true,
@@ -56,8 +58,6 @@ const User = () => {
 
 
     Axios.defaults.withCredentials = true;
-
-
     useEffect(() => {
         const SessionStorage = () => {
                 Axios.post("http://localhost:3001/id", {
@@ -73,25 +73,39 @@ const User = () => {
         SessionStorage();
     }
     )
-
     useEffect(() =>{
-        const fetchSpec = async () => {
+        if(FilterData == ''){
             try{
-                     await Axios.post("http://localhost:3001/data",{
+                    Axios.post("http://localhost:3001/Alldata",{
                         login: login
                     }).then((response) => {
                         if(response.data.message){
                             setEer(response.data.message)
                         }else{
-                            console.log(response.data)
-                            setEmployeeList(response.data)
+                            setData(response.data)
+                        }
+                    })
+                    Axios.post("http://localhost:3001/data",{
+                        login: login
+                    }).then((response) => {
+                        if(response.data.message){
+                            setEer(response.data.message)
+                            console.log("12")
+                        }else{
+                            setFilterData(response.data)
+                            console.log("1234")
                         }
                     })
             } catch (err){
                 console.log(err);
             }
+            
         }
-        fetchSpec();
+    },
+    );
+
+    useEffect(() =>{
+        
     },
     );
     
@@ -193,7 +207,7 @@ const User = () => {
                                                         </div>
                                                         <div className="TextBoxFirstNumber">
                                                             <div className="test" id="test">
-                                                                {EmployeeList.map((val ,key) => {
+                                                                {FilterData.map((val ,key) => {
                                                                     return (
                                                                         <i>{val.achievements}</i>
                                                                     )
@@ -214,7 +228,7 @@ const User = () => {
                                                             <i class="fa-sharp fa-regular fa-arrow-up"></i>
                                                         </div>
                                                         <div className="TextBoxFirstNumber">
-                                                        {EmployeeList.map((val ,key) => {
+                                                        {FilterData.map((val ,key) => {
                                                                     return (
                                                                         <i>{val.weight} KG</i> 
                                                                     )
@@ -231,7 +245,7 @@ const User = () => {
                                                         <i class="fa-sharp fa-regular fa-arrow-up"></i>
                                                     </div>
                                                     <div className="TextBoxFirstNumber">
-                                                    {EmployeeList.map(( val ,key) => {
+                                                    {FilterData.map(( val ,key) => {
                                                             const BMImap = Math.round(val.bmi)
                                                                 return (
                                                                     <i>{BMImap}</i> 
@@ -252,7 +266,7 @@ const User = () => {
                                                   <i class="fa-sharp fa-regular fa-arrow-up"></i>
                                             </div>
                                             <div className="TextBoxFirstNumber">
-                                            {EmployeeList.map((val ,key) => {
+                                            {FilterData.map((val ,key) => {
                                                         return (
                                                             <i>{val.goal}</i> 
                                                         )
