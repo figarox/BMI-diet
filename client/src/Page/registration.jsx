@@ -6,6 +6,7 @@ import '../Style/Registration.css';
 
 const WebRegister = () => {
 
+
     const [loginReg , setLoginReg] = useState();
     const [passwordReg , setPasswordReg] = useState();
     const [passwordReg2 , setPasswordReg2] = useState();
@@ -13,6 +14,9 @@ const WebRegister = () => {
     const [sexReg , setSexReg] = useState();
     const [weightReg , setWeightReg] = useState();
     const [heightReg , setHeightReg] = useState();
+
+    const [err , setErr] = useState();
+
 
     const Next = () => {
         if (passwordReg != null){
@@ -51,15 +55,21 @@ const WebRegister = () => {
     const navigate = useNavigate();
 
 
-    const Register = () => {
-        Axios.post("http://localhost:3001/register", {
-            login: loginReg,
-            password: passwordReg,
-            sex: sexReg,
-            weight: weightReg,
-            height: heightReg,
-        })
-        navigate('/login')
+    const Register = async (e) => {
+        try{
+          await Axios.post("http://localhost:3001/register", {
+                login: loginReg,
+                password: passwordReg,
+                sex: sexReg,
+                weight: weightReg,
+                height: heightReg,
+            }).then(
+                navigate('/login')
+            )
+        }catch (err) {
+            setErr(err.response.data)
+        }
+        
 };
 
 

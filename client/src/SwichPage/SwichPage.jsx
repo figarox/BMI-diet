@@ -8,6 +8,8 @@ import LogSwitchPage from "./PrivateSwichPage";
 import User from "../IsLoginPage/user"
 
 import Bmi from "./Bmi";
+
+
 const SwitchPage = () => {
     return ( 
         <>

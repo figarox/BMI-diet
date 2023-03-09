@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import '../Style/user.css';
-import axios from "axios";
+import Axios from "axios";
 import { VscEdit } from "react-icons/vsc";
+import { GiTrophyCup } from "react-icons/gi";
+
 import Chart from "react-apexcharts";
 
 
 const User = () => {
-    const [UserBox,setUserBox] = useState(0);
+    const [id,setId] = useState(sessionStorage.getItem('id'))
+    const [login,SetLogin] = useState()
+    const [eer,setEer] = useState(null)
 
+    const [UserBox,setUserBox] = useState(0);
     const [EmployeeList,setEmployeeList] = useState([])
-    const [DataLogin,setDataLogin] = useState([])
 
     const [options, setOptions] = useState({
         
@@ -48,15 +52,41 @@ const User = () => {
         ]
     )
 
+   
+
+
+    Axios.defaults.withCredentials = true;
+
+
+    useEffect(() => {
+        const SessionStorage = () => {
+                Axios.post("http://localhost:3001/id", {
+                id: id
+        }).then((response) => {
+            if(response.data.message){
+                setEer(response.data.message)
+            }else{
+                SetLogin(response.data)
+            }
+        })
+        }
+        SessionStorage();
+    }
+    )
+
     useEffect(() =>{
         const fetchSpec = async () => {
             try{
-                const resdata = await axios.get("http://localhost:3001/data")
-                const reslogin = await axios.get("http://localhost:3001/login")
-
-                setEmployeeList(resdata.data);
-                setDataLogin(reslogin.data.login);
-
+                     await Axios.post("http://localhost:3001/data",{
+                        login: login
+                    }).then((response) => {
+                        if(response.data.message){
+                            setEer(response.data.message)
+                        }else{
+                            console.log(response.data)
+                            setEmployeeList(response.data)
+                        }
+                    })
             } catch (err){
                 console.log(err);
             }
@@ -66,17 +96,6 @@ const User = () => {
     );
     
 
-    const FirstLetterLogin = DataLogin.map((val ,key) => {
-        return (
-            val.login.charAt(0)
-        )
-    })
-
-    const MapLogin = DataLogin.map((val ,key) => {
-        return (
-            val.login
-        )
-    })
 
     function AnimationmMouseOver() {
         document.getElementById('UserBox').style.animation="blumb 1s linear";
@@ -89,21 +108,18 @@ const User = () => {
         document.getElementById('UserBoxMenuBorder').style.display="none";
 
     }
-
     function BoxMouseOver(){
         document.getElementById('UserBoxMenuBorder').style.display="block";
     }
-
-
     function BoxMouseOut(){
         document.getElementById('UserBoxMenuBorder').style.display="none";
     }
-
     function EditButton(){
 
     }
 
-    
+    const FirstLetterLogin = login  // tutaj trzeba zmienic na jedna litere chartAt
+
 
     return (
         <>
@@ -140,7 +156,7 @@ const User = () => {
                                             <div className="HideUserBoxMenu">
                                                 <div className="UserBoxMenu">
                                                     <div className="UserBoxLogin">
-                                                        <p>{MapLogin}</p>
+                                                        <p>{login}</p>
                                                     </div>
                                                     <div className="UserBoxButton"></div>
                                                     <div className="UserBoxButton"></div>
@@ -168,6 +184,9 @@ const User = () => {
 
                                                         <div className="TextBoxFirst">
                                                             <p>Osiągniecia</p>
+                                                        </div>
+                                                        <div className="Cup" >
+                                                             <GiTrophyCup />
                                                         </div>
                                                         <div className="ArrowBoxFirstNumber">
                                                             <i class="fa-sharp fa-regular fa-arrow-up"></i>

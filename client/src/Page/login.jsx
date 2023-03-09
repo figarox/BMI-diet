@@ -19,7 +19,6 @@ const Login = () => {
             login: login,
             password: password,
         }).then((response) => {
-
            if(response.data.message){
             setLoginStatus(response.data.message);
            }else{

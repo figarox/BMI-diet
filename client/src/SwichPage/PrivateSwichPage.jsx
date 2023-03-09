@@ -6,12 +6,13 @@ import { useState } from "react";
     
     const [cos , setCos] = useState(true)
 
-    // Axios.get("http://localhost:3001/login").then((resposne) => {
-    //     setCos(resposne.data.loggedIn)
-    //     }
-    // )
+    Axios.get("http://localhost:3001/login").then((resposne) => {
+        sessionStorage.setItem('id' , resposne.data.id)
+
+        }
+    )
     if(cos != undefined){
-        return cos ? <Outlet/> : <Navigate to="/signin"/>
+        return cos ? <Outlet/> : <Navigate to="/login"/>
     }
     
 }
