@@ -90,10 +90,8 @@ const User = () => {
                     }).then((response) => {
                         if(response.data.message){
                             setEer(response.data.message)
-                            console.log("12")
                         }else{
                             setFilterData(response.data)
-                            console.log("1234")
                         }
                     })
             } catch (err){
@@ -104,10 +102,7 @@ const User = () => {
     },
     );
 
-    useEffect(() =>{
-        
-    },
-    );
+
     
 
 
