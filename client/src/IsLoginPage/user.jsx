@@ -9,7 +9,7 @@ import Chart from "react-apexcharts";
 
 const User = () => {
     const [id,setId] = useState(sessionStorage.getItem('id'))
-    const [login,SetLogin] = useState()
+    const [login,SetLogin] = useState('')
     const [eer,setEer] = useState()
 
     const [UserBox,setUserBox] = useState(0);
@@ -18,9 +18,15 @@ const User = () => {
 
 
     const [options, setOptions] = useState({
-        
+        plugins: {
+            legend: {
+                display: true,
+                labels: {
+                    color: 'white'
+                }
+       }},
         xaxis: {
-            categories: ['pon','wt','śr','czw','pi'],
+            categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
         },
         
         chart: {
@@ -40,12 +46,26 @@ const User = () => {
           }
         
     })
+    const test = Data.map((val ,key) => {
+        return (
+        val.weight
+        )
+    })
+
+        const cos = []
+        cos.push(test)
+   
+
+    const[qwe,setQwe] = useState({
+        
+    })
+    
 
     const [series, setSeries] = useState(
         [
             {
             name: 'Waga',
-            data: [30,40,43,53,34]
+            data: [45,20,52,52,63,20],
             },
             {
             name: 'BMI',
@@ -102,10 +122,6 @@ const User = () => {
     },
     );
 
-
-    
-
-
     function AnimationmMouseOver() {
         document.getElementById('UserBox').style.animation="blumb 1s linear";
         document.getElementById('UserBox').style.cursor="pointer";
@@ -126,8 +142,13 @@ const User = () => {
     function EditButton(){
 
     }
-
-    const FirstLetterLogin = login  // tutaj trzeba zmienic na jedna litere chartAt
+    const FirstLetterLogin = () => {
+        if(login == null && undefined){
+            return null
+        }else{
+            return login.charAt(0)
+        }
+    }  
 
 
     return (
@@ -157,7 +178,7 @@ const User = () => {
                             <div className="EverythinkUserBox">
                                     <div className="UserBox" id="UserBox" onMouseOver={AnimationmMouseOver} onMouseOut={AnimationmMouseOut}>
                                         <div className="UserBoxInSide">
-                                            <p>{FirstLetterLogin}</p>
+                                            <p>{FirstLetterLogin()}</p>
                                         </div>
                                         
                                     </div>

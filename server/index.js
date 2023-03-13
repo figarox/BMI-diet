@@ -9,7 +9,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const session = require("express-session");
 const { response } = require("express");
-
+const jwt = require("jsonwebtoken");
 
 //if (process.env.NODE_ENV !== 'production') {
 // }
@@ -90,13 +90,23 @@ bcrypt.hash(password,saltRounds, (err,hash) => {
 })
 })
 
-app.get("/login", (req, res) => {
+app.get("/login", (req, res, next) => {
     if (req.session.user) {
-        res.send({id: req.session.user});
+        const token = req.cookies.TSLhttml;
+        jwt.verify(token, process.env.T_SECRET, (err, decodedToken) => {
+            if(err){
+                console.log(err.message);
+                res.send({auth: false})
+            }else{
+                console.log("decodedToken")
+                res.send({auth: true})
+            }
+        })
     }else{
         //res.send({ loggedIn: false })
     }
 })
+
 
 app.post('/login',(req,res) => {
     const login = req.body.login;
@@ -113,8 +123,15 @@ app.post('/login',(req,res) => {
         if(result.length > 0){
             bcrypt.compare(password, result[0].password, (error, response) =>{
                 if(response){
-                    req.session.user = result[0].id;
+                    const maxAge = 60 * 60
+                    const token = jwt.sign({login: login}, process.env.T_SECRET, {expiresIn: maxAge})
+                    res.cookie("TSLhttml" ,token, {
+                        httpOnly: true,
+                        maxAge: maxAge * 1000,
+                    })
+                    req.session.user = true;
                     res.send(result);
+                 
                 }else{
                     res.send({ message: "Wrong login/password combination !!!"})   
                 }
@@ -131,6 +148,7 @@ app.post('/login',(req,res) => {
 
 app.post('/id', (req,res) => {
     const id = req.body.id ;    
+    
     dbmysql.query(
         "SELECT login FROM BMIdiet.konto WHERE id = "+ id +"",
         (err,result) => {
@@ -147,22 +165,26 @@ app.post('/id', (req,res) => {
     }
 )
 
-app.post('/Alldata', (req,res) => {
+// app.post('/Alldata', (req,res) => {
 
-    const login = req.body.login
+//     const login = req.body.login
 
-    dbmysql.query(
-        "SELECT * FROM BMIdiet."+login+"",
-        (err, result) => {
-            if(err){
-                res.send({ message: "blad w pobieraniu danych z db"})   
-            }else{
-                res.send(result)
-                console.log("wykonano rezulat pobierania uzytkownika")
+//     dbmysql.query(
+//         "SELECT * FROM BMIdiet."+login+"",
+//         (err, result) => {
+//             if(err){
+//                 res.send({ message: "blad w pobieraniu danych z db"})   
+//             }else{
+//                 res.send(result)
+//                 console.log("wykonano rezulat pobierania uzytkownika")
 
-            }
-        }
-        )
+//             }
+//         }
+//         )
+// })
+
+app.post('/Alldata' , (req,res) => {
+
 })
 
 app.post('/data', (req,res) => {

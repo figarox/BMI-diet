@@ -4,15 +4,16 @@ import { useState } from "react";
 
  const PrivateSwichPage = () => {
     
-    const [cos , setCos] = useState(true)
+    const [auth , setAuth] = useState()
 
     Axios.get("http://localhost:3001/login").then((resposne) => {
-        sessionStorage.setItem('id' , resposne.data.id)
+       setAuth(resposne.data.auth)
+       console.log(resposne.data.auth)
 
         }
     )
-    if(cos != undefined){
-        return cos ? <Outlet/> : <Navigate to="/login"/>
+    if(auth != undefined){
+        return auth ? <Outlet/> : <Navigate to="/login"/>
     }
     
 }
