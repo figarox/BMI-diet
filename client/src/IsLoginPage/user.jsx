@@ -74,8 +74,6 @@ const User = () => {
         ]
     )
 
-   
-
 
     Axios.defaults.withCredentials = true;
     useEffect(() => {

@@ -10,10 +10,13 @@ const cookieParser = require("cookie-parser")
 const session = require("express-session");
 const { response } = require("express");
 const jwt = require("jsonwebtoken");
+const rateLimit = require("express-rate-limit");
 
-//if (process.env.NODE_ENV !== 'production') {
-// }
-
+// wysylanie 25 zadan w ciagu 25 minut
+rateLimit({
+    windowMs: 5 * 60 * 1000, 
+    max: 25, 
+});
 
 app.use(express.json());
 app.use(cors({
@@ -34,6 +37,7 @@ app.use(
         resave: false,
         saveUninitialized: true,
         cookie: {
+            name: "cos",
             httpOnly: true,
         }
     })
@@ -90,22 +94,9 @@ bcrypt.hash(password,saltRounds, (err,hash) => {
 })
 })
 
-app.get("/login", (req, res, next) => {
-    if (req.session.user) {
-        const token = req.cookies.TSLhttml;
-        jwt.verify(token, process.env.T_SECRET, (err, decodedToken) => {
-            if(err){
-                console.log(err.message);
-                res.send({auth: false})
-            }else{
-                console.log("decodedToken")
-                res.send({auth: true})
-            }
-        })
-    }else{
-        //res.send({ loggedIn: false })
-    }
-})
+
+
+
 
 
 app.post('/login',(req,res) => {
@@ -127,9 +118,8 @@ app.post('/login',(req,res) => {
                     const token = jwt.sign({login: login}, process.env.T_SECRET, {expiresIn: maxAge})
                     res.cookie("TSLhttml" ,token, {
                         httpOnly: true,
-                        maxAge: maxAge * 1000,
                     })
-                    req.session.user = true;
+                    res.status(200);
                     res.send(result);
                  
                 }else{
@@ -153,17 +143,29 @@ app.post('/id', (req,res) => {
         "SELECT login FROM BMIdiet.konto WHERE id = "+ id +"",
         (err,result) => {
             if (err){
-                console.log("nie znaleziono id")
             }
             if(result.length > 0){
                 const idlogin = result[0].login
                 res.send(idlogin)
-                console.log("wykonano rezulat " + idlogin)
             }
         }
     )
     }
 )
+
+app.get("/authcheck", (req, res) => {
+    const token = req.cookies.TSLhttml;
+
+    jwt.verify(token, process.env.T_SECRET, (err, decodedToken) => {
+        if(err){
+            res.send({auth: false})
+        }else{
+            res.send({auth: true})
+        }
+    })
+
+})
+
 
 // app.post('/Alldata', (req,res) => {
 
@@ -183,9 +185,6 @@ app.post('/id', (req,res) => {
 //         )
 // })
 
-app.post('/Alldata' , (req,res) => {
-
-})
 
 app.post('/data', (req,res) => {
 
@@ -198,7 +197,6 @@ app.post('/data', (req,res) => {
                 res.send({ message: "blad w pobieraniu danych z db"})   
             }else{
                 res.send(result)
-                console.log("wykonano rezulat pobierania uzytkownika")
 
             }
         }
